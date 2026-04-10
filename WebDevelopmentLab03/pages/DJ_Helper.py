@@ -5,11 +5,6 @@ import requests as req
 st.title("DJ Helper")
 st.write("Welcome to DJ Helper! Enter a song and we will return a list of similar songs and similar artists to jumpstart your mixes! Customize artists and song popularity. We will do the rest!")
 
-baseWebsite = "https://ws.audioscrobbler.com"
-APIKey = "a37de3ee19ce5e9a0f8068415f2fa7b0"
-inputSong = st.text_input("input a song you want to mix", value=None)
-inputArtist = st.text_input("input the artist", value=None)
-
 #Base URL and API Key
 
 baseUrl = 'http://ws.audioscrobbler.com/2.0'
@@ -72,16 +67,11 @@ def getSimilarSongs(inputSong, inputArtist):
     except:
         return "Bad response. Try capitalizing the artist or song name."
 
-'''
-f"https://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist={artist}&track={track}&api_key=a37de3ee19ce5e9a0f8068415f2fa7b0&format=json
-last.fm"
+with st.form("survey_form"):
+    inputSong = st.text_input("input a song you want to mix", value=None)
+    inputArtist = st.text_input("input the artist", value=None)
+    submitted = st.form_submit_button("Submit Data")
+    if submitted:
+        st.write(getSimilarArtists(inputArtist))
+        st.write(getSimilarSongs(inputSong, inputArtist))
 
-f"https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist={artist}&api_key=a37de3ee19ce5e9a0f8068415f2fa7b0&format=json"
-
-
-api code: a37de3ee19ce5e9a0f8068415f2fa7b0
-http://www.last.fm/api/auth/?api_key=a37de3ee19ce5e9a0f8068415f2fa7b0
-https://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist=Bad+Bunny&track=La+Dificil&api_key=a37de3ee19ce5e9a0f8068415f2fa7b0&format=json
-'''
-baseWebsite = "https://ws.audioscrobbler.com"
-APIKey = "a37de3ee19ce5e9a0f8068415f2fa7b0"
