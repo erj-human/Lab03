@@ -27,7 +27,7 @@ def getSimilarArtists(inputArtist):
         data1 = response1.json()
         similarArtistList = []
         for i in data1["similarartists"]["artist"]:
-            if float(i["match"]) <= 1 and float(i["match"]) >= .50:
+            if float(i["match"]) <= 1 and float(i["match"]) >= sliderNum:
                 similarArtistList.append(i["name"])
         return similarArtistList[:10]
     
@@ -52,7 +52,7 @@ def getSimilarSongs(inputSong, inputArtist):
         data2 = response2.json()
         similarSongList = []
         for i in data2["similartracks"]["track"]:
-            if float(i["match"]) <= 1 and float(i["match"]) >= .50:
+            if float(i["match"]) <= 1 and float(i["match"]) >= sliderNum:
                 similarSongList.append(i["name"])
         return similarSongList[:10]
     
