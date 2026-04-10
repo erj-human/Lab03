@@ -64,8 +64,14 @@ with st.form("survey_form"):
     inputArtist = st.text_input("input the artist", value=None)
     submitted = st.form_submit_button("Submit Data")
     if submitted:
-        st.write(getSimilarArtists(inputArtist))
+        st.write("You may like these artists:")
+        for a in getSimilarArtists(inputArtist):
+            st.write(f"{a}")
+        st.write("You may like these songs:")
+        for p in getSimilarSongs(inputSong, inputArtist):
+            st.write(f"{a}")
         st.write(getSimilarSongs(inputSong, inputArtist))
+
 '''
 if st.button("change up the artists"):
     if float(i["artist"]["name"]) != inputArtist:
