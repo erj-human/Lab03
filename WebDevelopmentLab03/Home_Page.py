@@ -21,8 +21,8 @@ st.subheader("Team Member 1, Team Member 2")
 st.write("""
 Welcome to our Streamlit Web Development Lab03 app! You can navigate between the pages using the sidebar to the left. The following pages are:
 
-1.
-2.
+1. **DJ Helper**: yeah
+2. **AI**: oooh
 3.
 4.
 
