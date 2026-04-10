@@ -5,11 +5,6 @@ import requests
 st.title("DJ Helper")
 st.write("Welcome to DJ Helper! Enter a song and we will return a list of similar songs and similar artists to jumpstart your mixes! Customize artists and song popularity. We will do the rest!")
 
-sliderNumArtist = st.slider("How similar do you want the artists to be?",min_value=0,max_value=1)
-boolExpressionPlays = st.button("Only the hits")
-boolExpressionArtist = st.button("Keep songs from the same artist")
-print(sliderNumArtist)
-
 #Base URL and API Key
 
 baseUrl = 'http://ws.audioscrobbler.com/2.0'
@@ -78,6 +73,9 @@ def getSimilarSongs(inputSong, inputArtist):
 with st.form("survey_form"):
     inputSong = st.text_input("input a song you want to mix", value=None)
     inputArtist = st.text_input("input the artist", value=None)
+    sliderNumArtist = st.slider("How similar do you want the artists to be?",min_value=0,max_value=1)
+    boolExpressionPlays = st.button("Only the hits")
+    boolExpressionArtist = st.button("Keep songs from the same artist")
     submitted = st.form_submit_button("Submit Data")
     if submitted:
         st.write("**You may like these artists:**")
@@ -87,7 +85,7 @@ with st.form("survey_form"):
         for p in getSimilarSongs(inputSong, inputArtist):
             st.write(f"{p}")
         st.write(getSimilarSongs(inputSong, inputArtist))
-
+st.write(sliderNumArtist)
 '''
 if st.button("change up the artists"):
     if float(i["artist"]["name"]) != inputArtist:
