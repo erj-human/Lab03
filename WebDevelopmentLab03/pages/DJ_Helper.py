@@ -5,6 +5,11 @@ import requests
 st.title("DJ Helper")
 st.write("Welcome to DJ Helper! Enter a song and we will return a list of similar songs and similar artists to jumpstart your mixes! Customize artists and song popularity. We will do the rest!")
 
+sliderNumArtist = st.slider("How similar do you want the artists to be?",min_value=0,max_value=1)
+boolExpressionPlays = st.button("Only the hits")
+boolExpressionArtist = st.button("Keep songs from the same artist")
+print(sliderNumArtist)
+
 #Base URL and API Key
 
 baseUrl = 'http://ws.audioscrobbler.com/2.0'
@@ -53,7 +58,18 @@ def getSimilarSongs(inputSong, inputArtist):
         similarSongList = []
         for i in data2["similartracks"]["track"]:
             if float(i["match"]) <= 1 and float(i["match"]) >= .5:
-                similarSongList.append(i["name"])
+                if boolExpressionArtist and not boolExpressionPlays:
+                    if float(i["artist"]["name"]) != inputArtist:
+                        similarSongList.append(i["name"])
+                elif not boolExpressionArtist and boolExpressionPlays:
+                    if float(i["playcount"]) >= 100000:
+                elif boolExpressionArtist and boolExpressionPlays:
+                    if float(i["artist"]["name"]) != inputArtist:
+                        if float(i["playcount"]) >= 100000:
+                            similarSongList.append(i["name"])
+                else:
+                    similarSongList.append(i["name"])
+                     
         return similarSongList[:10]
     
     except:
