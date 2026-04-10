@@ -74,7 +74,7 @@ def getSimilarSongs(inputSong, inputArtist):
 with st.form("survey_form"):
     inputSong = st.text_input("input a song you want to mix", value=None)
     inputArtist = st.text_input("input the artist", value=None)
-    sliderNumArtist = st.slider("How similar do you want the artists to be?",min_value=0,max_value=1)
+    sliderNumArtist = st.slider("How similar do you want the artists to be?",min_value=0,max_value=1.0,step=float)
     boolExpressionPlays = st.button("Only the hits")
     boolExpressionArtist = st.button("Keep songs from the same artist")
     submitted = st.form_submit_button("Submit Data")
@@ -87,15 +87,3 @@ with st.form("survey_form"):
             st.write(f"{p}")
         st.write(getSimilarSongs(inputSong, inputArtist))
 st.write(sliderNumArtist)
-'''
-if st.button("change up the artists"):
-    if float(i["artist"]["name"]) != inputArtist:
-        similarSongList.append(i["name"])
-else:
-                  dont run
-if st.button("popular songs only"):
-    if float(i["playcount"]) > 10000:
-        similarSongList.append(i["name"])
-else:
-    dont run
-'''
