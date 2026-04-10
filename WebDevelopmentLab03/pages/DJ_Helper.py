@@ -45,7 +45,19 @@ def getSimilarSongs(inputSong, inputArtist):
     urlSong = inputSong.replace(" ", "+")
     endpoint2 = addBaseSongurl + "&track=" + urlSong + "&api_key=" + apiKey + "&format=json"
     response2 = requests.get(endpoint2)
-
+    
+'''
+if st.button("change up the artists"):
+    if float(i["artist"]["name"]) != inputArtist:
+        similarSongList.append(i["name"])
+else:
+                  fuck off
+if st.button("popular songs only"):
+    if float(i["playcount"]) > 10000:
+        similarSongList.append(i["name"])
+else:
+    similarSongList.append(i["name"])
+     '''        
     #Return the list code:
 
     try:
@@ -53,13 +65,6 @@ def getSimilarSongs(inputSong, inputArtist):
         similarSongList = []
         for i in data2["similartracks"]["track"]:
             if float(i["match"]) <= 1 and float(i["match"]) >= .50:
-              if st.button("change up the artists"):
-                if float(i["artist"]["name"]) != inputArtist:
-                  if st.button("popular songs only"):
-                    if float(i["playcount"]) > 10000:
-                      similarSongList.append(i["name"])
-                  else:
-                     similarSongList.append(i["name"])
               else:
                 similarSongList.append(i["name"])
         return similarSongList
