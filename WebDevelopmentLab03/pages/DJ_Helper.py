@@ -58,6 +58,7 @@ def getSimilarSongs(inputSong, inputArtist):
                         similarSongList.append(i["name"])
                 elif not boolExpressionArtist and boolExpressionPlays:
                     if float(i["playcount"]) >= 100000:
+                        similarSongList.append(i["name"])
                 elif boolExpressionArtist and boolExpressionPlays:
                     if float(i["artist"]["name"]) != inputArtist:
                         if float(i["playcount"]) >= 100000:
