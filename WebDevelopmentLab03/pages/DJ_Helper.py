@@ -29,7 +29,7 @@ def getSimilarArtists(inputArtist):
         for i in data1["similarartists"]["artist"]:
             if float(i["match"]) <= 1 and float(i["match"]) >= .50:
                 similarArtistList.append(i["name"])
-        return similarArtistList
+        return similarArtistList[:10]
     
     except:
         return "Bad response. Try capitalizing the artist name."
@@ -45,19 +45,7 @@ def getSimilarSongs(inputSong, inputArtist):
     urlSong = inputSong.replace(" ", "+")
     endpoint2 = addBaseSongurl + "&track=" + urlSong + "&api_key=" + apiKey + "&format=json"
     response2 = requests.get(endpoint2)
-    
-'''
-if st.button("change up the artists"):
-    if float(i["artist"]["name"]) != inputArtist:
-        similarSongList.append(i["name"])
-else:
-                  fuck off
-if st.button("popular songs only"):
-    if float(i["playcount"]) > 10000:
-        similarSongList.append(i["name"])
-else:
-    similarSongList.append(i["name"])
-     '''        
+
     #Return the list code:
 
     try:
@@ -65,12 +53,11 @@ else:
         similarSongList = []
         for i in data2["similartracks"]["track"]:
             if float(i["match"]) <= 1 and float(i["match"]) >= .50:
-              else:
                 similarSongList.append(i["name"])
-        return similarSongList
+        return similarSongList[:10]
     
     except:
-        return "Bad response. Try capitalizing the artist or song name."
+        return "Bad response"
 
 with st.form("survey_form"):
     inputSong = st.text_input("input a song you want to mix", value=None)
@@ -79,4 +66,15 @@ with st.form("survey_form"):
     if submitted:
         st.write(getSimilarArtists(inputArtist))
         st.write(getSimilarSongs(inputSong, inputArtist))
-
+'''
+if st.button("change up the artists"):
+    if float(i["artist"]["name"]) != inputArtist:
+        similarSongList.append(i["name"])
+else:
+                  dont run
+if st.button("popular songs only"):
+    if float(i["playcount"]) > 10000:
+        similarSongList.append(i["name"])
+else:
+    dont run
+'''
