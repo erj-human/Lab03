@@ -1,5 +1,5 @@
 import streamlit as st
-import requests as req
+import requests
 #Goal: box that you input artist and you get similar artists and input song and you get similar songs
 
 st.title("DJ Helper")
