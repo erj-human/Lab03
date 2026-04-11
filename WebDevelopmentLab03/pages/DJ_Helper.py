@@ -17,7 +17,7 @@ with st.form("survey_form"):
     inputArtist = st.text_input("input the artist", value=None)
     #sliderNumArtist = st.slider("How similar do you want the artists to be?",min_value=0,max_value=1.0,step=0.1)
     boolExpressionPlays = st.checkbox("Only the hits")
-    #boolExpressionArtist = st.checkbox("Keep songs from the same artist")
+    boolExpressionArtist = st.checkbox("Keep songs from the same artist")
 
     ###Similar Artists Function:
 
@@ -61,7 +61,7 @@ with st.form("survey_form"):
             data2 = response2.json()
             similarSongList = []
             for i in data2["similartracks"]["track"]:
-                if float(i["match"]) <= 1 and float(i["match"]) >= sliderNumArtist:
+                if float(i["match"]) <= 1 and float(i["match"]) >= .5:
                     if boolExpressionArtist and not boolExpressionPlays:
                         if float(i["artist"]["name"]) != inputArtist:
                             similarSongList.append(i["name"])
