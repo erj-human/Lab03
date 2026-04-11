@@ -56,14 +56,12 @@ with st.form("survey_form"):
         response2 = requests.get(endpoint2)
 
         #Return the list code:
-
-
-            data2 = response2.json()
-            similarSongList = []
-            for i in data2["similartracks"]["track"]:
-                if float(i["match"]) <= 1 and float(i["match"]) >= .5:
-                    if boolExpressionArtist and not boolExpressionPlays:
-                        if float(i["artist"]["name"]) != inputArtist:
+        data2 = response2.json()
+        similarSongList = []
+        for i in data2["similartracks"]["track"]:
+            if float(i["match"]) <= 1 and float(i["match"]) >= .5:
+                if boolExpressionArtist and not boolExpressionPlays:
+                    if float(i["artist"]["name"]) != inputArtist:
                             similarSongList.append(i["name"])
                     elif not boolExpressionArtist and boolExpressionPlays:
                         if int(i["playcount"]) >= 100000:
