@@ -1,5 +1,5 @@
 import streamlit as st
-import google.generativeai as genai
+import google-generativeai as genai
 
 st.set_page_config(page_title="Music Chatbot", page_icon="", layout="wide")
 
