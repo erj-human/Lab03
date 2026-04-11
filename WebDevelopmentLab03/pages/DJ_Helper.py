@@ -13,7 +13,7 @@ apiKey = "a28edaddcd62a1f9f8ae8100299fbc3b"
 with st.form("survey_form"):
     inputSong = st.text_input("input a song you want to mix", value=None)
     inputArtist = st.text_input("input the artist", value=None)
-    #sliderNumArtist = st.slider("How similar do you want the artists to be?",min_value=0,max_value=1.0,step=.1)
+    #sliderNumArtist = st.slider("How similar do you want the artists to be?",min_value=0,max_value=1.0,step=0.1)
     #boolExpressionPlays = st.checkbox("Only the hits")
     #boolExpressionArtist = st.checkbox("Keep songs from the same artist")
 
@@ -36,7 +36,7 @@ with st.form("survey_form"):
             for i in data1["similarartists"]["artist"]:
                 if float(i["match"]) <= 1 and float(i["match"]) >= .5:
                     similarArtistList.append(i["name"])
-            return similarArtistList[:10]
+            return similarArtistList
         
         except:
             return "Bad response. Try capitalizing the artist name."
@@ -59,7 +59,7 @@ with st.form("survey_form"):
             data2 = response2.json()
             similarSongList = []
             for i in data2["similartracks"]["track"]:
-                if float(i["match"]) <= 1 and float(i["match"]) >= .5:
+                if float(i["match"]) <= 1 and float(i["match"]) >= boolExpressionArtist:
                     if boolExpressionArtist and not boolExpressionPlays:
                         if float(i["artist"]["name"]) != inputArtist:
                             similarSongList.append(i["name"])
@@ -70,10 +70,10 @@ with st.form("survey_form"):
                         if float(i["artist"]["name"]) != inputArtist:
                             if float(i["playcount"]) >= 100000:
                                 similarSongList.append(i["name"])
-                    else:
-                        similarSongList.append(i["name"])
+                else:
+                    similarSongList.append(i["name"])
                         
-            return similarSongList[:10]
+            return similarSongList
         
         except:
             return "Bad response"
@@ -86,6 +86,5 @@ with st.form("survey_form"):
         st.write("**You may like these songs:**")
         for p in getSimilarSongs(inputSong, inputArtist):
             st.write(f"{p}")
-        st.write(getSimilarSongs(inputSong, inputArtist))
 
 
