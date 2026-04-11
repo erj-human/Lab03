@@ -79,12 +79,12 @@ with st.form("survey_form"):
         except:
             return "Bad response"
     if submitted:
-    st.write("**You may like these artists:**")
-    for a in getSimilarArtists(inputArtist):
-        st.write(f"{a}")
-    st.write("**You may like these songs:**")
-    for p in getSimilarSongs(inputSong, inputArtist):
-        st.write(f"{p}")
-    st.write(getSimilarSongs(inputSong, inputArtist))
+        st.write("**You may like these artists:**")
+        for a in getSimilarArtists(inputArtist):
+            st.write(f"{a}")
+        st.write("**You may like these songs:**")
+        for p in getSimilarSongs(inputSong, inputArtist):
+            st.write(f"{p}")
+        st.write(getSimilarSongs(inputSong, inputArtist))
 
 
