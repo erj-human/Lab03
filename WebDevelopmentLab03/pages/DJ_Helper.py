@@ -14,8 +14,8 @@ with st.form("survey_form"):
     inputSong = st.text_input("input a song you want to mix", value=None)
     inputArtist = st.text_input("input the artist", value=None)
     sliderNumArtist = st.slider("How similar do you want the artists to be?",min_value=0,max_value=1.0,step=float)
-    boolExpressionPlays = st.checklist("Only the hits")
-    boolExpressionArtist = st.checklist("Keep songs from the same artist")
+    boolExpressionPlays = st.checkbox("Only the hits")
+    boolExpressionArtist = st.checkbox("Keep songs from the same artist")
     submitted = st.form_submit_button("Submit Data")
 
     ###Similar Artists Function:
