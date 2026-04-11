@@ -69,10 +69,10 @@ with st.form("survey_form"):
                 elif boolExpressionArtist and boolExpressionPlays:
                     if float(i["artist"]["name"]) != inputArtist:
                         if int(i["playcount"]) >= 100000:
-                                similarSongList.append(i["name"])
-                else:
-                    similarSongList.append(i["name"])         
-            return similarSongList
+                            similarSongList.append(i["name"])
+            else:
+                similarSongList.append(i["name"])         
+        return similarSongList
         
     submitted = st.form_submit_button("Submit Data")
     if submitted:
