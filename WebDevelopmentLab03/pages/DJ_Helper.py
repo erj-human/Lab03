@@ -62,13 +62,13 @@ with st.form("survey_form"):
             if float(i["match"]) <= 1 and float(i["match"]) >= .5:
                 if boolExpressionArtist and not boolExpressionPlays:
                     if float(i["artist"]["name"]) != inputArtist:
-                            similarSongList.append(i["name"])
-                    elif not boolExpressionArtist and boolExpressionPlays:
+                        similarSongList.append(i["name"])
+                elif not boolExpressionArtist and boolExpressionPlays:
+                    if int(i["playcount"]) >= 100000:
+                        similarSongList.append(i["name"])
+                elif boolExpressionArtist and boolExpressionPlays:
+                    if float(i["artist"]["name"]) != inputArtist:
                         if int(i["playcount"]) >= 100000:
-                            similarSongList.append(i["name"])
-                    elif boolExpressionArtist and boolExpressionPlays:
-                        if float(i["artist"]["name"]) != inputArtist:
-                            if int(i["playcount"]) >= 100000:
                                 similarSongList.append(i["name"])
                 else:
                     similarSongList.append(i["name"])         
