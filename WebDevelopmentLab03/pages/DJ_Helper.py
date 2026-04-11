@@ -11,12 +11,11 @@ st.write("Welcome to DJ Helper! Enter a song and we will return a list of simila
 baseUrl = 'http://ws.audioscrobbler.com/2.0'
 apiKey = "a28edaddcd62a1f9f8ae8100299fbc3b"
 
-sliderNumArtist = st.slider("How similar do you want the artists to be?",min_value=0,max_value=1.0,step=0.1)
 
 with st.form("survey_form"):
     inputSong = st.text_input("input a song you want to mix", value=None)
     inputArtist = st.text_input("input the artist", value=None)
-    #sliderNumArtist = st.slider("How similar do you want the artists to be?",min_value=0,max_value=1.0,step=0.1)
+    sliderNumArtist = st.slider("How similar do you want the artists to be?",min_value=0,max_value=1.0,step=0.1)
     #boolExpressionPlays = st.checkbox("Only the hits")
     #boolExpressionArtist = st.checkbox("Keep songs from the same artist")
 
@@ -62,7 +61,7 @@ with st.form("survey_form"):
             data2 = response2.json()
             similarSongList = []
             for i in data2["similartracks"]["track"]:
-                if float(i["match"]) <= 1 and float(i["match"]) >= boolExpressionArtist:
+                if float(i["match"]) <= 1 and float(i["match"]) >= sliderNumArtist:
                     if boolExpressionArtist and not boolExpressionPlays:
                         if float(i["artist"]["name"]) != inputArtist:
                             similarSongList.append(i["name"])
