@@ -81,7 +81,7 @@ with st.form("survey_form"):
         
     submitted = st.form_submit_button("Submit Data")
     if submitted:
-        st.write("**You may like these artists:**")
+        st.write("**You may like these artists:**\n")
         for a in getSimilarArtists(inputArtist):
             st.write(f"{a}")
         st.write("**You may like these songs:**")
